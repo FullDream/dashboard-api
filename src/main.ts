@@ -9,7 +9,9 @@ import { ILogger } from './logger/logger.interface'
 import { LoggerService } from './logger/logger.service'
 import { TYPES } from './types'
 import { UserController } from './users/user.controller'
-import { IUserController } from './users/users.interface'
+import { IUserController } from './users/users.controller.interface'
+import { UsersRepository } from './users/users.repository'
+import { IUsersRepository } from './users/users.repository.interface'
 import { UserService } from './users/users.service'
 import { IUserService } from './users/users.service.interface'
 
@@ -22,8 +24,9 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
 	bind<ILogger>(TYPES.ILogger).to(LoggerService).inSingletonScope()
 	bind<IExeptionFilter>(TYPES.ExeptionFilter).to(ExeptionFilter)
 	bind<IUserController>(TYPES.UserController).to(UserController)
-	bind<PrismaService>(TYPES.PrismaService).to(PrismaService).inSingletonScope()
 	bind<IUserService>(TYPES.UserService).to(UserService)
+	bind<PrismaService>(TYPES.PrismaService).to(PrismaService).inSingletonScope()
+	bind<IUsersRepository>(TYPES.UsersRepository).to(UsersRepository).inSingletonScope()
 	bind<IConfigService>(TYPES.ConfigService).to(ConfigService).inSingletonScope()
 
 	bind<App>(TYPES.Application).to(App)
